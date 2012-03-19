@@ -26,8 +26,7 @@ Background: movies have been added to database
 Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step(s) to check the 'PG' and 'R' checkboxes
   
-  Given I am on the RottenPotatoes home page
-  
+ 
   When I check "ratings_PG" 
   And I check "ratings_R"
   
@@ -39,7 +38,7 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
   # enter step to "submit" the search form on the homepage
   And I press "Refresh"
   
-  
+  # result
   Then I should be on the RottenPotatoes home page
   
   # enter step(s) to ensure that PG and R movies are visible
@@ -61,5 +60,11 @@ Scenario: restrict to movies with 'PG' or 'R' ratings
 Scenario: no ratings selected
   # see assignment
 
+
 Scenario: all ratings selected
-  # see assignment
+
+	When I check the following ratings: G, PG, R, PG-13, NC-17
+	And I press "Refresh"
+	
+	Then I should be on the RottenPotatoes home page
+	And I should see all of the movies
